@@ -6,6 +6,14 @@ class DishDetail extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    console.log("DishDetail Component componentDidMount invoked");
+  }
+
+  componentDidUpdate() {
+    console.log("DishDetail Component componentDidUpdate invoked");
+  }
+
   renderComments(comments) {
     if (comments !== null) {
       const dishComments = comments.map((comment) => {
@@ -67,6 +75,7 @@ class DishDetail extends Component {
   }
 
   render() {
+    console.log("DishDetail Component render invoked");
     if (this.props.dishDetail != null) {
       return (
         <div className="container">
