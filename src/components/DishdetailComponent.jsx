@@ -18,6 +18,7 @@ import {
 import { Link } from "react-router-dom";
 import { Control, LocalForm, Errors } from "react-redux-form";
 import { Loading } from "./LoadingComponent";
+import { baseUrl } from "../shared/baseUrl";
 
 function RenderComments({ comments, addComment, dishId }) {
   if (comments !== null) {
@@ -60,7 +61,11 @@ function RenderDishDetail({ dishDetail }) {
     const dishDetailComponent = (
       <div className="col-12 col-md-5 m-1" key={dishDetail.id}>
         <Card>
-          <CardImg width="100%" src={dishDetail.image} alt={dishDetail.name} />
+          <CardImg
+            width="100%"
+            src={baseUrl + dishDetail.image}
+            alt={dishDetail.name}
+          />
           <CardTitle className="text-left mx-2 font-weight-bold">
             {dishDetail.name}
           </CardTitle>
