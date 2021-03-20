@@ -19,22 +19,27 @@ import { Link } from "react-router-dom";
 import { Control, LocalForm, Errors } from "react-redux-form";
 import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
+import { FadeTransform, Fade, Stagger } from "react-animation-components";
 
 function RenderComments({ comments, postComment, dishId }) {
   if (comments !== null) {
     const dishComments = comments.map((comment) => {
       return (
-        <div key={comment.id} className="text-left mx-2">
-          <CardText>{comment.comment}</CardText>
-          <CardText className="mb-3">
-            -- {comment.author},{" "}
-            {new Intl.DateTimeFormat("en-US", {
-              year: "numeric",
-              month: "short",
-              day: "2-digit",
-            }).format(new Date(Date.parse(comment.date)))}
-          </CardText>
-        </div>
+        <Stagger in>
+          <div key={comment.id} className="text-left mx-2">
+            <Fade in>
+              <CardText>{comment.comment}</CardText>
+              <CardText className="mb-3">
+                -- {comment.author},{" "}
+                {new Intl.DateTimeFormat("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "2-digit",
+                }).format(new Date(Date.parse(comment.date)))}
+              </CardText>
+            </Fade>
+          </div>
+        </Stagger>
       );
     });
 
@@ -60,19 +65,26 @@ function RenderDishDetail({ dishDetail }) {
   if (dishDetail !== null) {
     const dishDetailComponent = (
       <div className="col-12 col-md-5 m-1" key={dishDetail.id}>
-        <Card>
-          <CardImg
-            width="100%"
-            src={baseUrl + dishDetail.image}
-            alt={dishDetail.name}
-          />
-          <CardTitle className="text-left mx-2 font-weight-bold">
-            {dishDetail.name}
-          </CardTitle>
-          <CardText className="text-left mx-2">
-            {dishDetail.description}
-          </CardText>
-        </Card>
+        <FadeTransform
+          in
+          transformProps={{
+            exitTransform: "scale(0.5) translateY(-50%)",
+          }}
+        >
+          <Card>
+            <CardImg
+              width="100%"
+              src={baseUrl + dishDetail.image}
+              alt={dishDetail.name}
+            />
+            <CardTitle className="text-left mx-2 font-weight-bold">
+              {dishDetail.name}
+            </CardTitle>
+            <CardText className="text-left mx-2">
+              {dishDetail.description}
+            </CardText>
+          </Card>
+        </FadeTransform>
       </div>
     );
     return dishDetailComponent;

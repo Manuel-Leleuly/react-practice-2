@@ -42,6 +42,8 @@
     "bootstrap-social": "^5.1.1",
     "cross-fetch": "^2.1.0",
     "font-awesome": "^4.7.0",
+    "prop-types": "^15.6.0",
+    "react-animation-components": "^3.0.0",
     "react-redux": "^7.2.2",
     "react-redux-form": "^1.16.8",
     "react-router-dom": "^4.2.2",
